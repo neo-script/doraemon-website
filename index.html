@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>🌿 my little plant</title>
+  <meta charset="UTF-8" />
+  <title>🌿 My Little Plant</title>
   <style>
     body {
       background: #0f0f2f;
@@ -11,12 +11,10 @@
       text-align: center;
       padding: 40px 20px;
     }
-
     h1 {
       font-size: 3rem;
       margin-bottom: 20px;
     }
-
     input, textarea {
       background: #1d1d4c;
       color: #fff;
@@ -26,7 +24,6 @@
       border-radius: 8px;
       font-size: 1rem;
     }
-
     button {
       background: #6767ff;
       color: #fff;
@@ -36,18 +33,16 @@
       font-size: 1rem;
       cursor: pointer;
       margin-top: 10px;
+      transition: background 0.3s ease;
     }
-
     button:hover {
       background: #7f7fff;
     }
-
     #plant {
       margin: 30px auto;
-      width: 120px;
+      width: 140px;
       transition: transform 0.3s ease;
     }
-
     #potMessage {
       font-style: italic;
       margin-top: 12px;
@@ -55,63 +50,67 @@
     }
   </style>
 </head>
-
 <body>
+  <h1>🌱 My Little Plant</h1>
 
-  <h1>🌱 my little plant</h1>
-
-  <input id="plantName" placeholder="name your plant..." /><br>
-  <textarea id="potText" placeholder="write a message on your pot..."></textarea><br>
-  <button onclick="plantIt()">plant it 🌱</button>
+  <input id="plantName" placeholder="Name Your Plant..." /><br />
+  <textarea id="potText" placeholder="Write A Message On Your Pot..."></textarea><br />
+  <button onclick="plantIt()">Plant It 🌱</button>
 
   <div id="plantArea" style="display:none;">
     <h2 id="nameDisplay"></h2>
-    <img id="plant" src="https://i.ibb.co/1RJK9Rf/sprout1.png">
+    <img
+      id="plant"
+      src="https://static.vecteezy.com/system/resources/thumbnails/041/302/444/small_2x/ai-generated-sprouting-plant-in-clear-soil-background-free-png.png"
+      alt="Your Plant"
+    />
     <div id="potMessage"></div>
-    <button onclick="waterIt()">💧 water</button>
+    <button onclick="waterIt()">💧 Water</button>
   </div>
 
   <script>
-    // current plant growth stage
     let growth = 1;
 
     function plantIt() {
-      // grab values
-      const name = document.getElementById("plantName").value;
-      const message = document.getElementById("potText").value;
+      const name = document.getElementById("plantName").value.trim();
+      const message = document.getElementById("potText").value.trim();
 
-      if (!name) return alert("give your plant a name 🌿");
+      if (!name) {
+        alert("Give your plant a name 🌿");
+        return;
+      }
 
-      // show plant area
       document.getElementById("plantArea").style.display = "block";
-
-      // set name & message
       document.getElementById("nameDisplay").textContent = name;
       document.getElementById("potMessage").textContent = message;
+
+      // Reset growth stage and plant image on new plant
+      growth = 1;
+      document.getElementById("plant").src =
+        "https://static.vecteezy.com/system/resources/thumbnails/041/302/444/small_2x/ai-generated-sprouting-plant-in-clear-soil-background-free-png.png";
     }
 
     function waterIt() {
-      growth++;
       const plant = document.getElementById("plant");
+      growth++;
 
-      // change plant image based on stage
-      if (growth === 2) {
-        plant.src = "https://i.ibb.co/k01Kv7k/sprout2.png";
+      if (growth <= 2) {
+        // sprout image (same for stages 1 & 2)
+        plant.src =
+          "https://static.vecteezy.com/system/resources/thumbnails/041/302/444/small_2x/ai-generated-sprouting-plant-in-clear-soil-background-free-png.png";
       } else if (growth === 3) {
-        plant.src = "https://i.ibb.co/hF7Lnpd/plant3.png";
-      } else if (growth === 4) {
-        plant.src = "https://i.ibb.co/8xHtd0K/plant4.png";
+        // full grown flower
+        plant.src =
+          "https://cdn.pixabay.com/photo/2023/03/25/05/18/flower-7875159_1280.png";
       } else {
-        alert("your plant is fully grown 🌸");
+        alert("Your plant is fully grown 🌸");
+        growth = 3; // keep at max growth
       }
 
-      // cute little growth bounce
+      // little growth bounce effect
       plant.style.transform = "scale(1.1)";
-      setTimeout(() => plant.style.transform = "scale(1)", 200);
+      setTimeout(() => (plant.style.transform = "scale(1)"), 200);
     }
   </script>
-
 </body>
 </html>
-
-this is html code right?
