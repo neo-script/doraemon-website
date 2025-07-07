@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🌿 my little plant</title>
+  <style>
+    body {
+      background: #0f0f2f;
+      color: #f0f0f0;
+      font-family: 'Helvetica Neue', sans-serif;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    input, textarea {
+      background: #1d1d4c;
+      color: #fff;
+      border: none;
+      padding: 10px;
+      margin: 10px;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    button {
+      background: #6767ff;
+      color: #fff;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 20px;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background: #7f7fff;
+    }
+
+    #plant {
+      margin: 30px auto;
+      width: 120px;
+      transition: transform 0.3s ease;
+    }
+
+    #potMessage {
+      font-style: italic;
+      margin-top: 12px;
+      color: #ccc;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>🌱 my little plant</h1>
+
+  <input id="plantName" placeholder="name your plant..." /><br>
+  <textarea id="potText" placeholder="write a message on your pot..."></textarea><br>
+  <button onclick="plantIt()">plant it 🌱</button>
+
+  <div id="plantArea" style="display:none;">
+    <h2 id="nameDisplay"></h2>
+    <img id="plant" src="https://i.ibb.co/1RJK9Rf/sprout1.png">
+    <div id="potMessage"></div>
+    <button onclick="waterIt()">💧 water</button>
+  </div>
+
+  <script>
+    // current plant growth stage
+    let growth = 1;
+
+    function plantIt() {
+      // grab values
+      const name = document.getElementById("plantName").value;
+      const message = document.getElementById("potText").value;
+
+      if (!name) return alert("give your plant a name 🌿");
+
+      // show plant area
+      document.getElementById("plantArea").style.display = "block";
+
+      // set name & message
+      document.getElementById("nameDisplay").textContent = name;
+      document.getElementById("potMessage").textContent = message;
+    }
+
+    function waterIt() {
+      growth++;
+      const plant = document.getElementById("plant");
+
+      // change plant image based on stage
+      if (growth === 2) {
+        plant.src = "https://i.ibb.co/k01Kv7k/sprout2.png";
+      } else if (growth === 3) {
+        plant.src = "https://i.ibb.co/hF7Lnpd/plant3.png";
+      } else if (growth === 4) {
+        plant.src = "https://i.ibb.co/8xHtd0K/plant4.png";
+      } else {
+        alert("your plant is fully grown 🌸");
+      }
+
+      // cute little growth bounce
+      plant.style.transform = "scale(1.1)";
+      setTimeout(() => plant.style.transform = "scale(1)", 200);
+    }
+  </script>
+
+</body>
+</html>
+
+this is html code right?
